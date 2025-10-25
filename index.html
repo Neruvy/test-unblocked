@@ -1,414 +1,106 @@
-<html lang="en-us"><head></head><body class="dark"><module>
-<moduleprefs title="Google.com">
-<content type="html"><!--[CDATA[
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <script src="//game-cdn.poki.com/scripts/v2/poki-sdk.js"></script><script src="https://game-cdn.poki.com/scripts/961361a4c90c333f0fe754db3d373d7e72816469/poki-sdk-hoist-961361a4c90c333f0fe754db3d373d7e72816469.js" type="text/javascript" crossorigin="anonymous"></script>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <meta name="description" content="">
+    
+    <link rel="manifest" href="subwaysurfers.webmanifest">
+    <link rel="icon" href="assets/images/app-icon-16.png" type="image/png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/app-icon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/app-icon-72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/images/app-icon-57.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/images/app-icon-57.png">
 
-
-<!DOCTYPE html-->
-
-
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/z-f3-f1/1@main/style.css">
-    <!-- GameMonetize SDK Entegrasyonu -->
-    <script id="gamemonetize-sdk" src="https://cdn.jsdelivr.net/gh/testamalame/sef@main/sedk.js"></script><script type="text/javascript">
-        window.SDK_OPTIONS = {
-            gameId: "jp112o3o4hzgrnc7zaewjkrfk282pul8",
-            onEvent: function (a) {
-                switch (a.name) {
-                    case "SDK_GAME_PAUSE":
-                        console.log("Oyun duraklatıldı, ses kapatılıyor...");
-                        if (typeof myGameInstance !== 'undefined' && myGameInstance) {
-                            myGameInstance.SendMessage('AudioManager', 'MuteAudio');
-                        }
-                        break;
-                    case "SDK_GAME_START":
-                        console.log("Reklam bitti, oyun devam ediyor...");
-                        if (typeof myGameInstance !== 'undefined' && myGameInstance) {
-                            myGameInstance.SendMessage('AudioManager', 'UnmuteAudio');
-                        }
-                        break;
-                    case "SDK_READY":
-                        console.log("SDK hazır.");
-                        break;
-                }
-            }
-        };
-        (function (a, b, c) {
-            var d = a.getElementsByTagName(b)[0];
-            a.getElementById(c) || (a = a.createElement(b), a.id = c, a.src = "https://cdn.jsdelivr.net/gh/testamalame/sef@main/sedk.js", d.parentNode.insertBefore(a, d));
-        })(document, "script", "gamemonetize-sdk");
-    </script>
+    <title>Subway Surfers Web</title>
     <style>
-        canvas:focus { outline: none; }
-        html, body {
-            padding: 0;
+        body, html { 
             margin: 0;
-            overflow: hidden;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-tap-highlight-color: rgba(0,0,0,0);
             height: 100%;
+            background-color: #0b316b;
+            overflow: hidden;
+            background-image: url('assets/preload/splash.png');
+            background-repeat: no-repeat;
+            background-position: center;
         }
+
+        #message {
+            text-align: center;
+            font-size: 8px;
+            z-index: 5;
+            font-family: "Verdana", sans-serif;
+            color: #fff;
+            position: fixed;
+            width: 100%;
+            z-index: 9999;
+        }
+
+        .dot {
+            display: inline;
+            margin-left: 0.2em;
+            margin-right: 0.2em;
+            position: relative;
+            top: -1em;
+            font-size: 3.5em;
+            opacity: 0;
+            animation: showHideDot 2.5s ease-in-out infinite;
+        }
+
+        .dot.one { animation-delay: 0.2s; }
+        .dot.two { animation-delay: 0.4s; }
+        .dot.three { animation-delay: 0.6s; }
+
+        @keyframes showHideDot {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            60% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
     </style>
-
-
-    <div id="unity-container" class="unity-desktop">
-        <canvas id="unity-canvas" tabindex="-1" style="cursor: default;" width="850" height="613"></canvas>
-    </div>
-    <div id="loading-cover" style="background: url(&quot;https://cdn.jsdelivr.net/gh/z-f3-f1/1@main/background.jpg&quot;) center center / cover; display: none;">
-        <div id="unity-loading-bar">
-            <div id="unity-logo"><img src="https://cdn.jsdelivr.net/gh/z-f3-f1/1@main/logo.png"></div>
-            <div id="unity-progress-bar-empty" style="">
-                <div id="unity-progress-bar-full" style="width: 100%;"></div>
-            </div>
-            <div class="spinner" style="display: none;"></div>
-        </div>
-    </div>
+<script src="./js/dependencies.bundle.js"></script><script src="./js/index.js"></script><style type="text/css">.dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity .1s linear;-o-transition:opacity .1s linear;-moz-transition:opacity .1s linear;transition:opacity .1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1 !important}.dg.main:hover .close-button,.dg.main .close-button.drag{opacity:1}.dg.main .close-button{-webkit-transition:opacity .1s linear;-o-transition:opacity .1s linear;-moz-transition:opacity .1s linear;transition:opacity .1s linear;border:0;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button.close-top{position:relative}.dg.main .close-button.close-bottom{position:absolute}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-y:visible}.dg.a.has-save>ul.close-top{margin-top:0}.dg.a.has-save>ul.close-bottom{margin-top:27px}.dg.a.has-save>ul.closed{margin-top:0}.dg.a .save-row{top:0;z-index:1002}.dg.a .save-row.close-top{position:relative}.dg.a .save-row.close-bottom{position:fixed}.dg li{-webkit-transition:height .1s ease-out;-o-transition:height .1s ease-out;-moz-transition:height .1s ease-out;transition:height .1s ease-out;-webkit-transition:overflow .1s linear;-o-transition:overflow .1s linear;-moz-transition:overflow .1s linear;transition:overflow .1s linear}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid rgba(0,0,0,0)}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li>*{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px;overflow:hidden}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .cr.function .property-name{width:100%}.dg .c{float:left;width:60%;position:relative}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:7px}.dg .c select{margin-top:5px}.dg .cr.function,.dg .cr.function .property-name,.dg .cr.function *,.dg .cr.boolean,.dg .cr.boolean *{cursor:pointer}.dg .cr.color{overflow:visible}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0px 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco, monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px 'Lucida Grande', sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px 4px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.color{border-left:3px solid}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2FA1D6}.dg .cr.number input[type=text]{color:#2FA1D6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.function:hover,.dg .cr.boolean:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2FA1D6;max-width:100%}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}
+</style><style type="text/css">.dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity .1s linear;-o-transition:opacity .1s linear;-moz-transition:opacity .1s linear;transition:opacity .1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1 !important}.dg.main:hover .close-button,.dg.main .close-button.drag{opacity:1}.dg.main .close-button{-webkit-transition:opacity .1s linear;-o-transition:opacity .1s linear;-moz-transition:opacity .1s linear;transition:opacity .1s linear;border:0;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button.close-top{position:relative}.dg.main .close-button.close-bottom{position:absolute}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-y:visible}.dg.a.has-save>ul.close-top{margin-top:0}.dg.a.has-save>ul.close-bottom{margin-top:27px}.dg.a.has-save>ul.closed{margin-top:0}.dg.a .save-row{top:0;z-index:1002}.dg.a .save-row.close-top{position:relative}.dg.a .save-row.close-bottom{position:fixed}.dg li{-webkit-transition:height .1s ease-out;-o-transition:height .1s ease-out;-moz-transition:height .1s ease-out;transition:height .1s ease-out;-webkit-transition:overflow .1s linear;-o-transition:overflow .1s linear;-moz-transition:overflow .1s linear;transition:overflow .1s linear}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid rgba(0,0,0,0)}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li>*{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px;overflow:hidden}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .cr.function .property-name{width:100%}.dg .c{float:left;width:60%;position:relative}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:7px}.dg .c select{margin-top:5px}.dg .cr.function,.dg .cr.function .property-name,.dg .cr.function *,.dg .cr.boolean,.dg .cr.boolean *{cursor:pointer}.dg .cr.color{overflow:visible}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0px 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco, monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px 'Lucida Grande', sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px 4px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.color{border-left:3px solid}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2FA1D6}.dg .cr.number input[type=text]{color:#2FA1D6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.function:hover,.dg .cr.boolean:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2FA1D6;max-width:100%}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}
+</style><style>
+    @font-face {
+        font-family: Lilita One;
+        src: url("assets/font/lilita-one.woff2?h=1ctq51rqmg6mpvyz") format('woff2'),
+             url("assets/font/lilita-one.woff?h=1ctq51rqmg6mpvyz") format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }</style><style>
+    @font-face {
+        font-family: Stencilia;
+        src: url("assets/font/stencilia.woff2?h=1ctq51rqmg6mpvyz") format('woff2'),
+             url("assets/font/stencilia.woff?h=1ctq51rqmg6mpvyz") format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }</style><style>
+    @font-face {
+        font-family: Titan One;
+        src: url("assets/font/titan-one.woff2?h=1ctq51rqmg6mpvyz") format('woff2'),
+             url("assets/font/titan-one.woff?h=1ctq51rqmg6mpvyz") format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }</style></head>
+<body>
     <script>
-        const hideFullScreenButton = "";
-        const buildUrl = "https://cdn.jsdelivr.net/gh/z-f3-f1/1@main/Build";
-        const loaderUrl = buildUrl + "/yandexBrotli.loader.js";
-        const config = {
-            dataUrl: buildUrl + "/yandexBrotli.data.br",
-            frameworkUrl: buildUrl + "/yandexBrotli.framewor.js",
-            streamingAssetsUrl: "StreamingAssets",
-            companyName: "Brain massage",
-            productName: "Supercar Battle Royale",
-            productVersion: "0.0.197"
-        };
-
-        function loadAndMergeFiles(files, callback) {
-            var mergedBlob = [];
-            var loadNextFile = function (index) {
-                if (index < files.length) {
-                    var file = files[index];
-                    fetch(buildUrl + "/" + file)
-                        .then(response => response.arrayBuffer())
-                        .then(data => {
-                            mergedBlob.push(new Uint8Array(data));
-                            loadNextFile(index + 1);
-                        })
-                        .catch(error => console.error('Dosya yüklenemedi:', file, error));
-                } else {
-                    callback(new Blob(mergedBlob));
-                }
-            };
-            loadNextFile(0);
+        window.NOSW = true;
+        window.GAME_CONFIG = {
+            pokiSdkDebug: false,
+            leaderboard: 'mockup',
+            bundlesPath: './bundles',
         }
-
-        var wasmFiles = ["yandexBrotli.wasm.br.part1", "yandexBrotli.wasm.br.part2"];
-        const container = document.querySelector("#unity-container");
-        const canvas = document.querySelector("#unity-canvas");
-        const loadingCover = document.querySelector("#loading-cover");
-        const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
-        const progressBarFull = document.querySelector("#unity-progress-bar-full");
-        const spinner = document.querySelector('.spinner');
-
-        const canFullscreen = (function () {
-            for (const key of [
-                'exitFullscreen', 'webkitExitFullscreen', 'webkitCancelFullScreen',
-                'mozCancelFullScreen', 'msExitFullscreen'
-            ]) {
-                if (key in document) return true;
-            }
-            return false;
-        }());
-
-        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-            container.className = "unity-mobile";
-        }
-
-        let myGameInstance = null;
-        let isAdShown = false;
-
-        function showAdOnClick() {
-            if (!isAdShown && typeof sdk !== 'undefined' && typeof sdk.showBanner !== 'undefined') {
-                sdk.showBanner();
-                isAdShown = true;
-            }
-        }
-
-        loadAndMergeFiles(wasmFiles, function (mergedWasmBlob) {
-            var mergedWasmFile = URL.createObjectURL(mergedWasmBlob);
-            config.codeUrl = mergedWasmFile;
-            var script = document.createElement("script");
-            script.src = loaderUrl;
-            script.onload = () => {
-                createUnityInstance(canvas, config, (progress) => {
-                    progressBarFull.style.width = 100 * progress + "%";
-                }).then((unityInstance) => {
-                    myGameInstance = unityInstance;
-                    loadingCover.style.display = "none";
-                    // Oyun yüklendiğinde tıklama olayını ekle
-                    canvas.addEventListener('pointerdown', showAdOnClick);
-                    canvas.addEventListener('touchstart', showAdOnClick);
-                }).catch((message) => {
-                    alert(message);
-                });
-            };
-            document.body.appendChild(script);
-        });
-
-        loadingCover.style.background = "url('https://cdn.jsdelivr.net/gh/z-f3-f1/1@main/background.jpg') center / cover";
-        loadingCover.style.display = "";
-        document.addEventListener('contextmenu', event => event.preventDefault());
-
-        function FocusGame() {
-            window.focus();
-            canvas.focus();
-        }
-        window.addEventListener('pointerdown', FocusGame);
-        window.addEventListener('touchstart', FocusGame);
-
-        let StartUnityInstance;
-        let ysdk = null;
-        let environmentData = {
-            language: "en", domain: "default_domain", deviceType: "desktop",
-            isMobile: false, isDesktop: true, isTablet: false, isTV: false,
-            appID: "default_app_id", browserLang: navigator.language || "en",
-            payload: null, promptCanShow: false, reviewCanShow: false,
-            platform: navigator.platform,
-            browser: (function() {
-                let userAgent = navigator.userAgent;
-                if (userAgent.includes("YaBrowser")) return "Yandex";
-                if (userAgent.includes("OPR") || userAgent.includes("Opera")) return "Opera";
-                if (userAgent.includes("Firefox")) return "Firefox";
-                if (userAgent.includes("MSIE") || userAgent.includes("Trident")) return "IE";
-                if (userAgent.includes("Edge")) return "Edge";
-                if (userAgent.includes("Chrome")) return "Chrome";
-                if (userAgent.includes("Safari")) return "Safari";
-                return "Other";
-            })()
-        };
-        
-        let cloudSaves = 'noData';
-        let paymentsData = 'none';
-        let playerData = 'noData';
-        let player = null;
-        let payments = null;
-        let initGame = false;
-        let nowFullAdOpen = false;
-
-        function GetPayments() { console.warn("GetPayments is not implemented"); return Promise.resolve("none"); }
-        function SaveCloud() { console.warn("SaveCloud is not implemented"); }
-        function LoadCloud() { console.warn("LoadCloud is not implemented"); return Promise.resolve("noData"); }
-        function InitPlayer() { console.warn("InitPlayer is not implemented"); return Promise.resolve("noData"); }
-        function FullAdShow() { console.warn("FullAdShow is not implemented"); }
-        function RewardedShow() { console.warn("RewardedShow is not implemented"); }
-        function StickyAdActivity() { console.warn("StickyAdActivity is not implemented"); }
-        function Review() { console.warn("Review is not implemented"); }
-        function PromptShow() { console.warn("PromptShow is not implemented"); }
-        function InitLeaderboards() { console.warn("InitLeaderboards is not implemented"); }
-        function GetLeaderboardScores() { console.warn("GetLeaderboardScores is not implemented"); }
-        function SetLeaderboardScores() { console.warn("SetLeaderboardScores is not implemented"); }
-        function ConsumePurchase() { console.warn("ConsumePurchase is not implemented"); }
-        function ConsumePurchases() { console.warn("ConsumePurchases is not implemented"); }
-        function InitLeaderboard() { console.warn("InitLeaderboard is not implemented"); }
-        function BuyPayments() { console.warn("BuyPayments is not implemented"); }
-
-        try {
-            const script = document.createElement("script");
-            script.src = loaderUrl;
-            script.onload = () => {
-                StartUnityInstance = function () {
-                    createUnityInstance(canvas, config, (progress) => {
-                        spinner.style.display = "none";
-                        progressBarEmpty.style.display = "";
-                        progressBarFull.style.width = `${100 * progress}%`;
-                    }).then((unityInstance) => {
-                        myGameInstance = unityInstance;
-                        loadingCover.style.display = "none";
-                    }).catch((message) => {
-                        console.error("Unity yükleme hatası:", message);
-                    });
-                };
-                StartUnityInstance();
-            };
-            document.body.appendChild(script);
-        } catch (error) {
-            console.error("Başlatma sırasında hata:", error);
-        }
-
-        function InitGame() {
-            try {
-                console.log('Init Game Success');
-                initGame = true;
-                if (nowFullAdOpen === true && myGameInstance != null) {
-                    myGameInstance.SendMessage('YandexGame', 'OpenFullAd');
-                }
-            } catch (error) {
-                console.error("InitGame sırasında hata:", error);
-            }
-        }
-
-        window.addEventListener("unhandledrejection", function(event) {
-            console.warn("Hata es geçildi:", event.reason);
-            event.preventDefault();
-        });
+        // https://github.com/pixijs/pixijs/issues/9414
+        delete Array.prototype.group;
     </script>
+    
+    <script src="js/loading.js"></script>
+    <script src="js/boot.js"></script>
 
 
-<!-- GOOGLE -->
-<style>
-  /* Container: Top center, fixed, with overflow hidden */
-  #ad-container {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(728px, calc(100% - 20px)); /* 728px, 10px margin on mobile */
-    height: 90px;
-    background: rgba(0, 0, 0, 0.90);
-    display: none;
-    z-index: 99999;
-    border-radius: 0; /* Sharp corners */
-    overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
-    box-sizing: border-box;
-    transition: transform 0.5s ease-in-out; /* Smooth slide-in/out animation */
-  }
-
-  /* Slide-out animation */
-  #ad-container.hidden {
-    transform: translate(-50%, -100%); /* Slide up out of view */
-  }
-
-  #ad-iframe {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 745px; /* Updated width */
-    height: 90px; /* Updated height */
-    border: 0;
-    display: block;
-    overflow: hidden;
-    pointer-events: auto;
-    box-sizing: content-box;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  #ad-iframe::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
-  }
-
-  /* Close button with arrow */
-  #close-ad {
-    position: absolute;
-    top: 6px;
-    right: 8px;
-    background: #ff4d4d;
-    color: #fff;
-    border: none;
-    padding: 5px 9px;
-    font-size: 13px;
-    border-radius: 4px;
-    cursor: not-allowed;
-    opacity: 0.72;
-    z-index: 100000;
-    display: flex;
-    align-items: center;
-  }
-  #close-ad.enabled {
-    cursor: pointer;
-    opacity: 1;
-  }
-  #close-ad::before {
-    content: '↑'; /* Up arrow */
-    margin-right: 4px;
-  }
-
-  /* Right mask for scrollbar */
-  #ad-right-mask {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 12px;
-    height: 100%;
-    pointer-events: none;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
-    z-index: 99999;
-  }
-
-  /* Mobile adjustments */
-  @media (max-width: 440px) {
-    #ad-container {
-      width: calc(100% - 12px);
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 0; /* Sharp corners on mobile */
-    }
-    #ad-iframe {
-      width: 708px;
-    }
-  }
-</style>
-
-<div id="ad-container" aria-hidden="false" role="dialog" aria-label="Advertisement" style="display: block;">
-  <iframe id="ad-iframe" src="https://script.google.com/macros/s/AKfycbzA6GNdpfUShkCh6apD0D21YAUf7A5d3Guhq2PayqLbk_5XG_wQhy0bdYzKJWLhzgMVMQ/exec" width="768px" height="95px" scrolling="no" frameborder="0" sandbox="allow-scripts allow-popups allow-same-origin"></iframe>
-  <button id="close-ad" class="enabled">Close ↑</button>
-  <div id="ad-right-mask"></div>
-</div>
-
-<script>
-  (function () {
-    const showDelay = 2000; // 2 seconds delay before first show
-    const countdownStart = 12; // 12 seconds countdown
-    const reappearDelay = 25000; // 25 seconds before reappearance
-    const adContainer = document.getElementById('ad-container');
-    const closeBtn = document.getElementById('close-ad');
-
-    function showAd() {
-      // Show ad with smooth slide-in
-      adContainer.style.display = 'block';
-      adContainer.classList.remove('hidden');
-      adContainer.setAttribute('aria-hidden', 'false');
-
-      // Start countdown
-      let timeLeft = countdownStart;
-      closeBtn.textContent = `Close (${timeLeft})`;
-      closeBtn.disabled = true;
-      closeBtn.classList.remove('enabled');
-
-      const t = setInterval(() => {
-        timeLeft--;
-        if (timeLeft > 0) {
-          closeBtn.textContent = `Close (${timeLeft})`;
-        } else {
-          clearInterval(t);
-          closeBtn.disabled = false;
-          closeBtn.classList.add('enabled');
-          closeBtn.textContent = 'Close ↑';
-        }
-      }, 1000);
-    }
-
-    // Initial ad show
-    setTimeout(showAd, showDelay);
-
-    // Close with animation and schedule reappearance
-    closeBtn.addEventListener('click', () => {
-      if (closeBtn.disabled) return;
-      adContainer.classList.add('hidden');
-      adContainer.setAttribute('aria-hidden', 'true');
-      // Schedule reappearance without removing or reloading iframe
-      setTimeout(showAd, reappearDelay);
-    });
-  })();
-</script>
-
-
-
-
-
-
-]]&gt;</content>
-</moduleprefs></module><script src="https://cdn.jsdelivr.net/gh/z-f3-f1/1@main/Build/yandexBrotli.loader.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/z-f3-f1/1@main/Build/yandexBrotli.framewor.js"></script><script src="https://cdn.jsdelivr.net/gh/z-f3-f1/1@main/Build/yandexBrotli.loader.js"></script><script src="https://cdn.jsdelivr.net/gh/z-f3-f1/1@main/Build/yandexBrotli.framewor.js"></script></body></html>
+<div class="fontcache" style="font-family: Lilita One; position: fixed; margin-left: -100px; margin-top: -100px; background-color: blue; z-index: 9999;">.</div><div class="fontcache" style="font-family: Stencilia; position: fixed; margin-left: -100px; margin-top: -100px; background-color: blue; z-index: 9999;">.</div><div class="fontcache" style="font-family: Titan One; position: fixed; margin-left: -100px; margin-top: -100px; background-color: blue; z-index: 9999;">.</div><canvas id="pixi-canvas" style="position: absolute; inset: 0px; width: 836px; height: 470px; overflow: visible; display: block; touch-action: none; cursor: inherit; filter: saturate(1.24);" width="836" height="470"></canvas></body></html>
